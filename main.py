@@ -566,6 +566,16 @@ app, rt = fast_app(
                     color: #b5b5b5;
                 }
             }
+            
+            .page-title {
+                color: #1a1a1a;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .page-title {
+                    color: #ffffff;
+                }
+            }
         ''')
     )
 )
@@ -693,7 +703,7 @@ def config():
         ),
         Div(
             Div(
-                H2('Manage Vocabulary', style='color: #1a1a1a;'),
+                H2('Manage Vocabulary', cls='page-title'),
                 Div(
                     Div(
                         Input(type='text', id='new-word', placeholder='Enter a new word...', 
