@@ -29,24 +29,30 @@ app, rt = fast_app(
             .container {
                 max-width: 800px;
                 margin: 0 auto;
-                padding: 2rem;
+                padding: 1rem;
             }
             
             .header {
                 text-align: center;
-                margin-bottom: 3rem;
-                padding: 2rem 0;
+                margin-bottom: 1.5rem;
+                padding: 1rem 0;
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 font-weight: 700;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.25rem;
                 color: #37352f;
             }
             
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 1.75rem;
+                }
+            }
+            
             .subtitle {
-                color: #787774;
+                color: #57534e;
                 font-size: 1.125rem;
             }
             
@@ -54,9 +60,9 @@ app, rt = fast_app(
                 display: flex;
                 gap: 1rem;
                 justify-content: center;
-                margin: 2rem 0;
+                margin: 1rem 0;
                 border-bottom: 1px solid #e9e9e7;
-                padding-bottom: 1rem;
+                padding-bottom: 0.75rem;
             }
             
             .nav-link {
@@ -81,26 +87,61 @@ app, rt = fast_app(
                 background: #ffffff;
                 border: 1px solid #e9e9e7;
                 border-radius: 8px;
-                padding: 2rem;
-                margin-bottom: 1.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            }
+            
+            @media (max-width: 768px) {
+                .card {
+                    padding: 1rem;
+                }
             }
             
             .word-list {
                 display: flex;
-                flex-wrap: wrap;
-                gap: 0.75rem;
+                flex-direction: column;
+                gap: 0.5rem;
                 margin: 1.5rem 0;
+                max-height: 400px;
+                overflow-y: auto;
+                padding-right: 0.5rem;
             }
             
-            .word-tag {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                padding: 0.5rem 1rem;
+            .word-list::-webkit-scrollbar {
+                width: 6px;
+            }
+            
+            .word-list::-webkit-scrollbar-track {
                 background: #f4f4f2;
-                border-radius: 6px;
-                font-size: 0.875rem;
+                border-radius: 3px;
+            }
+            
+            .word-list::-webkit-scrollbar-thumb {
+                background: #d4d4d2;
+                border-radius: 3px;
+            }
+            
+            .word-list::-webkit-scrollbar-thumb:hover {
+                background: #c4c4c2;
+            }
+            
+            .word-tile {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.875rem 1.25rem;
+                background: #f9f9f8;
+                border: 1px solid #e9e9e7;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: all 0.2s;
+            }
+            
+            .word-tile:hover {
+                background: #f4f4f2;
+                border-color: #d9d9d7;
+                transform: translateX(2px);
             }
             
             .remove-btn {
@@ -167,17 +208,44 @@ app, rt = fast_app(
             
             .quiz-card {
                 text-align: center;
-                padding: 3rem 2rem;
+                padding: 2rem 1.5rem;
+            }
+            
+            @media (max-width: 768px) {
+                .quiz-card {
+                    padding: 1.5rem 1rem;
+                }
             }
             
             .quiz-word {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 font-weight: 700;
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
                 color: #37352f;
             }
             
+            @media (max-width: 768px) {
+                .quiz-word {
+                    font-size: 1.75rem;
+                    margin-bottom: 1rem;
+                }
+            }
+            
             .quiz-options {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            @media (max-width: 768px) {
+                .quiz-options {
+                    gap: 0.5rem;
+                    margin-bottom: 1rem;
+                }
+            }
+            
+            form.quiz-options {
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
@@ -186,14 +254,24 @@ app, rt = fast_app(
             
             .option-btn {
                 width: 100%;
-                padding: 1.25rem;
+                padding: 1rem;
                 text-align: left;
                 background: #f4f4f2;
                 border: 2px solid transparent;
                 border-radius: 8px;
                 font-size: 1rem;
+                color: #1a1a1a;
+                font-weight: 500;
                 cursor: pointer;
                 transition: all 0.2s;
+                line-height: 1.4;
+            }
+            
+            @media (max-width: 768px) {
+                .option-btn {
+                    padding: 0.875rem;
+                    font-size: 0.9rem;
+                }
             }
             
             .option-btn:hover {
@@ -214,8 +292,15 @@ app, rt = fast_app(
             .stats {
                 display: flex;
                 justify-content: center;
-                gap: 3rem;
-                margin: 2rem 0;
+                gap: 2rem;
+                margin: 1rem 0;
+            }
+            
+            @media (max-width: 768px) {
+                .stats {
+                    gap: 1.5rem;
+                    margin: 0.75rem 0;
+                }
             }
             
             .stat {
@@ -223,14 +308,21 @@ app, rt = fast_app(
             }
             
             .stat-value {
-                font-size: 2rem;
+                font-size: 1.75rem;
                 font-weight: 700;
                 color: #37352f;
             }
             
+            @media (max-width: 768px) {
+                .stat-value {
+                    font-size: 1.5rem;
+                }
+            }
+            
             .stat-label {
-                color: #787774;
+                color: #57534e;
                 font-size: 0.875rem;
+                font-weight: 500;
             }
             
             .message {
@@ -252,19 +344,38 @@ app, rt = fast_app(
             
             .congrats {
                 text-align: center;
-                padding: 3rem;
+                padding: 2rem;
+            }
+            
+            @media (max-width: 768px) {
+                .congrats {
+                    padding: 1.5rem;
+                }
             }
             
             .congrats h2 {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+                color: #1a1a1a;
+            }
+            
+            @media (max-width: 768px) {
+                .congrats h2 {
+                    font-size: 1.75rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+            
+            .congrats p {
+                color: #1a1a1a;
+                font-weight: 500;
             }
             
             .loading {
                 display: flex;
                 justify-content: center;
                 padding: 2rem;
-                color: #787774;
+                color: #57534e;
             }
         ''')
     )
@@ -340,7 +451,7 @@ def get_quiz_options(word):
         ]
 
 @rt('/')
-def get():
+def home():
     return Div(
         Div(
             H1("Ronin's Vocab"),
@@ -349,21 +460,25 @@ def get():
         ),
         Div(
             A('Quiz', href='/quiz', cls='nav-link'),
-            A('Config', href='/config', cls='nav-link'),
+            A('Words', href='/config', cls='nav-link'),
             cls='nav'
         ),
         Div(
-            H2('Welcome!', style='text-align: center; margin: 3rem 0;'),
-            P('Start with the Quiz to practice vocabulary, or go to Config to manage your word list.',
-              style='text-align: center; color: #787774; font-size: 1.125rem;'),
+            H2('Welcome!', style='text-align: center; margin: 2rem 0 1.5rem 0; color: #1a1a1a;'),
+            P('Start with the Quiz to practice vocabulary, or go to Words to manage your word list.',
+              style='text-align: center; color: #57534e; font-size: 1.125rem;'),
             cls='container'
         ),
         cls='container'
     )
 
+@rt('/test')
+def test():
+    return P('HTMX is working!', style='color: green; font-weight: bold;')
+
 @rt('/config')
-def get():
-    words = get_all_words()
+def config():
+    words = sorted(get_all_words(), key=lambda w: w.word.lower())
     
     return Div(
         Div(
@@ -373,12 +488,12 @@ def get():
         ),
         Div(
             A('Quiz', href='/quiz', cls='nav-link'),
-            A('Config', href='/config', cls='nav-link active'),
+            A('Words', href='/config', cls='nav-link active'),
             cls='nav'
         ),
         Div(
             Div(
-                H2('Manage Vocabulary'),
+                H2('Manage Vocabulary', style='color: #1a1a1a;'),
                 Div(
                     Div(
                         Input(type='text', id='new-word', placeholder='Enter a new word...', 
@@ -396,17 +511,16 @@ def get():
                 ),
                 Div(
                     *[Div(
-                        word.word,
+                        Span(word.word),
                         Button('×', cls='remove-btn',
                                hx_delete=f'/remove-word/{word.id}',
-                               hx_target='#word-list',
-                               hx_confirm=f'Remove "{word.word}" from the list?'),
-                        cls='word-tag'
+                               hx_target='#word-list'),
+                        cls='word-tile'
                     ) for word in words],
                     id='word-list',
                     cls='word-list'
                 ),
-                P(f'Total words: {len(words)}', style='color: #787774; text-align: center;'),
+                P(f'Total words: {len(words)}', style='color: #57534e; text-align: center; font-weight: 500;', id='word-count'),
                 cls='card'
             ),
             cls='container'
@@ -421,42 +535,79 @@ async def post(request):
     if new_word:
         add_word(new_word)
     
-    words = get_all_words()
+    words = sorted(get_all_words(), key=lambda w: w.word.lower())
     return Div(
         *[Div(
-            word.word,
+            Span(word.word),
             Button('×', cls='remove-btn',
                    hx_delete=f'/remove-word/{word.id}',
-                   hx_target='#word-list',
-                   hx_confirm=f'Remove "{word.word}" from the list?'),
-            cls='word-tag'
+                   hx_target='#word-list'),
+            cls='word-tile'
         ) for word in words],
         id='word-list',
         cls='word-list'
-    ), Script('document.getElementById("new-word").value = "";')
+    ), P(f'Total words: {len(words)}', style='color: #57534e; text-align: center; font-weight: 500;', id='word-count', hx_swap_oob='true'), Script('document.getElementById("new-word").value = "";')
 
 @rt('/remove-word/{word_id}', methods=['DELETE'])
 def delete(word_id: int):
     remove_word(word_id)
-    words = get_all_words()
+    words = sorted(get_all_words(), key=lambda w: w.word.lower())
     
     return Div(
-        *[Div(
-            word.word,
-            Button('×', cls='remove-btn',
-                   hx_delete=f'/remove-word/{word.id}',
-                   hx_target='#word-list',
-                   hx_confirm=f'Remove "{word.word}" from the list?'),
-            cls='word-tag'
-        ) for word in words],
-        id='word-list',
-        cls='word-list'
+        Div(
+            *[Div(
+                Span(word.word),
+                Button('×', cls='remove-btn',
+                       hx_delete=f'/remove-word/{word.id}',
+                       hx_target='#word-list'),
+                cls='word-tile'
+            ) for word in words],
+            id='word-list',
+            cls='word-list'
+        ),
+        P(f'Total words: {len(words)}', style='color: #57534e; text-align: center; font-weight: 500;', id='word-count', hx_swap_oob='true')
     )
 
 @rt('/quiz')
-def get():
+def quiz():
+    # Always reset quiz when navigating to quiz page to ensure word count is accurate
+    reset_quiz()
+    
+    # Get the first question directly
     if not quiz_state['words_remaining']:
-        reset_quiz()
+        quiz_content = Div(
+            Div(
+                H2('🎉 Congratulations!'),
+                P(f'You completed all {quiz_state["total_words"]} words!'),
+                P(f'Final streak: {quiz_state["streak"]}'),
+                Button('Start Again', cls='btn', onclick='window.location.href="/quiz"'),
+                cls='congrats'
+            ),
+            cls='card quiz-card'
+        )
+    else:
+        # Pick a random word and get quiz content
+        word = random.choice(quiz_state['words_remaining'])
+        quiz_state['current_word'] = word
+        options = get_quiz_options(word)
+        correct_answer = options[0]
+        shuffled_options = options.copy()
+        random.shuffle(shuffled_options)
+        correct_index = shuffled_options.index(correct_answer)
+        
+        quiz_content = Div(
+            Div(word, cls='quiz-word'),
+            Div(
+                *[Button(
+                    option,
+                    cls='option-btn',
+                    hx_get=f'/quiz/answer/{word}/{i}/{correct_index}',
+                    hx_target='#quiz-content'
+                ) for i, option in enumerate(shuffled_options)],
+                cls='quiz-options'
+            ),
+            cls='card quiz-card'
+        )
     
     return Div(
         Div(
@@ -466,7 +617,7 @@ def get():
         ),
         Div(
             A('Quiz', href='/quiz', cls='nav-link active'),
-            A('Config', href='/config', cls='nav-link'),
+            A('Words', href='/config', cls='nav-link'),
             cls='nav'
         ),
         Div(
@@ -481,15 +632,16 @@ def get():
                     Div('Progress', cls='stat-label'),
                     cls='stat'
                 ),
-                cls='stats'
+                cls='stats',
+                id='quiz-stats'
             ),
-            Div(id='quiz-content', hx_get='/quiz/next', hx_trigger='load'),
+            Div(quiz_content, id='quiz-content'),
             cls='container'
         )
     )
 
 @rt('/quiz/next')
-def get():
+def quiz_next():
     if not quiz_state['words_remaining']:
         return Div(
             Div(
@@ -515,7 +667,7 @@ def get():
     )
 
 @rt('/quiz/question/{word}')
-def get(word: str):
+def quiz_question(word: str):
     options = get_quiz_options(word)
     
     # Shuffle options but remember correct answer position
@@ -530,41 +682,64 @@ def get(word: str):
             *[Button(
                 option,
                 cls='option-btn',
-                hx_post=f'/quiz/answer',
-                hx_vals=json.dumps({
-                    'word': word,
-                    'answer_index': i,
-                    'correct_index': correct_index
-                }),
-                hx_target='#quiz-content',
-                hx_swap='innerHTML'
+                hx_get=f'/quiz/answer/{word}/{i}/{correct_index}',
+                hx_target='#quiz-content'
             ) for i, option in enumerate(shuffled_options)],
             cls='quiz-options'
         ),
         cls='card quiz-card'
     )
 
-@rt('/quiz/answer', methods=['POST'])
-async def post(request):
-    form = await request.form()
-    data = json.loads(form.get('hx-vals', '{}'))
-    
-    word = data.get('word')
-    answer_index = data.get('answer_index')
-    correct_index = data.get('correct_index')
+@rt('/quiz/test/{option_index}')
+def get(option_index: int):
+    return Div(
+        H2(f"You clicked option {option_index}!"),
+        P("This test worked!"),
+        Button('Try Again', cls='btn', hx_get='/quiz/next', hx_target='#quiz-content')
+    )
+
+@rt('/quiz/answer/{word}/{answer_index}/{correct_index}')
+def quiz_answer(word: str, answer_index: int, correct_index: int):
     
     is_correct = answer_index == correct_index
     
     if is_correct:
         quiz_state['streak'] += 1
         quiz_state['correct_answers'] += 1
-        quiz_state['words_remaining'].remove(word)
+        if word in quiz_state['words_remaining']:
+            quiz_state['words_remaining'].remove(word)
         message = Div('Correct! Well done!', cls='message success')
     else:
         quiz_state['streak'] = 0
-        message = Div('Incorrect. Keep trying!', cls='message error')
+        # Get the correct answer to show
+        correct_option_text = get_quiz_options(word)[0]
+        message = Div(
+            P('Incorrect!', style='font-weight: bold; margin-bottom: 0.5rem;'),
+            P(f'The correct answer was: {correct_option_text}', style='font-size: 0.9rem;'),
+            cls='message error'
+        )
+    
+    # Update the stats in the parent element
+    stats_update = Div(
+        Div(
+            Div(
+                Div(f'Streak: {quiz_state["streak"]}', cls='stat-value'),
+                Div('Current Streak', cls='stat-label'),
+                cls='stat'
+            ),
+            Div(
+                Div(f'{quiz_state["correct_answers"]}/{quiz_state["total_words"]}', cls='stat-value'),
+                Div('Progress', cls='stat-label'),
+                cls='stat'
+            ),
+            cls='stats',
+            id='quiz-stats',
+            hx_swap_oob='true'
+        )
+    )
     
     return Div(
+        stats_update,
         message,
         Div(
             Button('Next Word', cls='btn', hx_get='/quiz/next', hx_target='#quiz-content'),

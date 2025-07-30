@@ -100,4 +100,4 @@ def init_default_words():
         db.close()
 
 # Initialize database with default words on first run
-init_default_words()
+# init_default_words()  # Commented out to prevent resetting words
