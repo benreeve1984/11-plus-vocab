@@ -37,6 +37,14 @@ app, rt = fast_app(
                 color: #37352f;
                 line-height: 1.5;
                 min-height: 100vh;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                body {
+                    background: #1a1a1a;
+                    color: #e5e5e5;
+                }
             }
             
             .container {
@@ -56,6 +64,12 @@ app, rt = fast_app(
                 font-weight: 700;
                 margin-bottom: 0.25rem;
                 color: #37352f;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                h1 {
+                    color: #ffffff;
+                }
             }
             
             @media (max-width: 768px) {
@@ -78,6 +92,12 @@ app, rt = fast_app(
                 padding-bottom: 0.75rem;
             }
             
+            @media (prefers-color-scheme: dark) {
+                .nav {
+                    border-bottom-color: #404040;
+                }
+            }
+            
             .nav-link {
                 padding: 0.5rem 1rem;
                 text-decoration: none;
@@ -96,6 +116,21 @@ app, rt = fast_app(
                 color: white;
             }
             
+            @media (prefers-color-scheme: dark) {
+                .nav-link {
+                    color: #e5e5e5;
+                }
+                
+                .nav-link:hover {
+                    background: #2a2a2a;
+                }
+                
+                .nav-link.active {
+                    background: #e5e5e5;
+                    color: #1a1a1a;
+                }
+            }
+            
             .card {
                 background: #ffffff;
                 border: 1px solid #e9e9e7;
@@ -103,6 +138,14 @@ app, rt = fast_app(
                 padding: 1.5rem;
                 margin-bottom: 1rem;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .card {
+                    background: #2a2a2a;
+                    border-color: #404040;
+                    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+                }
             }
             
             @media (max-width: 768px) {
@@ -157,6 +200,19 @@ app, rt = fast_app(
                 transform: translateX(2px);
             }
             
+            @media (prefers-color-scheme: dark) {
+                .word-tile {
+                    background: #333333;
+                    border-color: #404040;
+                    color: #e5e5e5;
+                }
+                
+                .word-tile:hover {
+                    background: #3a3a3a;
+                    border-color: #505050;
+                }
+            }
+            
             .remove-btn {
                 background: none;
                 border: none;
@@ -185,11 +241,25 @@ app, rt = fast_app(
                 font-size: 1rem;
                 font-family: inherit;
                 transition: border-color 0.2s;
+                background: #ffffff;
+                color: #37352f;
             }
             
             input[type="text"]:focus {
                 outline: none;
                 border-color: #37352f;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                input[type="text"] {
+                    background: #333333;
+                    border-color: #404040;
+                    color: #e5e5e5;
+                }
+                
+                input[type="text"]:focus {
+                    border-color: #e5e5e5;
+                }
             }
             
             .btn {
@@ -219,6 +289,26 @@ app, rt = fast_app(
                 background: #e9e9e7;
             }
             
+            @media (prefers-color-scheme: dark) {
+                .btn {
+                    background: #e5e5e5;
+                    color: #1a1a1a;
+                }
+                
+                .btn:hover {
+                    background: #d5d5d5;
+                }
+                
+                .btn-secondary {
+                    background: #333333;
+                    color: #e5e5e5;
+                }
+                
+                .btn-secondary:hover {
+                    background: #404040;
+                }
+            }
+            
             .quiz-card {
                 text-align: center;
                 padding: 2rem 1.5rem;
@@ -235,6 +325,12 @@ app, rt = fast_app(
                 font-weight: 700;
                 margin-bottom: 1.5rem;
                 color: #37352f;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .quiz-word {
+                    color: #ffffff;
+                }
             }
             
             @media (max-width: 768px) {
@@ -278,6 +374,24 @@ app, rt = fast_app(
                 cursor: pointer;
                 transition: all 0.2s;
                 line-height: 1.4;
+            }
+            
+            .option-btn:hover {
+                background: #e9e9e7;
+                border-color: #37352f;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .option-btn {
+                    background: #333333;
+                    color: #e5e5e5;
+                    border-color: transparent;
+                }
+                
+                .option-btn:hover {
+                    background: #404040;
+                    border-color: #e5e5e5;
+                }
             }
             
             @media (max-width: 768px) {
@@ -326,6 +440,12 @@ app, rt = fast_app(
                 color: #37352f;
             }
             
+            @media (prefers-color-scheme: dark) {
+                .stat-value {
+                    color: #ffffff;
+                }
+            }
+            
             @media (max-width: 768px) {
                 .stat-value {
                     font-size: 1.5rem;
@@ -336,6 +456,12 @@ app, rt = fast_app(
                 color: #57534e;
                 font-size: 0.875rem;
                 font-weight: 500;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .stat-label {
+                    color: #b5b5b5;
+                }
             }
             
             .message {
@@ -355,6 +481,18 @@ app, rt = fast_app(
                 color: #eb5757;
             }
             
+            @media (prefers-color-scheme: dark) {
+                .message.success {
+                    background: #1a4d2e;
+                    color: #4ade80;
+                }
+                
+                .message.error {
+                    background: #4d1a1a;
+                    color: #f87171;
+                }
+            }
+            
             .congrats {
                 text-align: center;
                 padding: 2rem;
@@ -372,6 +510,21 @@ app, rt = fast_app(
                 color: #1a1a1a;
             }
             
+            .congrats p {
+                color: #1a1a1a;
+                font-weight: 500;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .congrats h2 {
+                    color: #ffffff;
+                }
+                
+                .congrats p {
+                    color: #e5e5e5;
+                }
+            }
+            
             @media (max-width: 768px) {
                 .congrats h2 {
                     font-size: 1.75rem;
@@ -379,16 +532,39 @@ app, rt = fast_app(
                 }
             }
             
-            .congrats p {
-                color: #1a1a1a;
-                font-weight: 500;
-            }
-            
             .loading {
                 display: flex;
                 justify-content: center;
                 padding: 2rem;
                 color: #57534e;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .loading {
+                    color: #b5b5b5;
+                }
+            }
+            
+            .welcome-title {
+                text-align: center;
+                margin: 2rem 0 1.5rem 0;
+                color: #1a1a1a;
+            }
+            
+            .welcome-subtitle {
+                text-align: center;
+                color: #57534e;
+                font-size: 1.125rem;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                .welcome-title {
+                    color: #ffffff;
+                }
+                
+                .welcome-subtitle {
+                    color: #b5b5b5;
+                }
             }
         ''')
     )
@@ -484,9 +660,9 @@ def home():
             cls='nav'
         ),
         Div(
-            H2('Welcome!', style='text-align: center; margin: 2rem 0 1.5rem 0; color: #1a1a1a;'),
+            H2('Welcome!', cls='welcome-title'),
             P('Start with the Quiz to practice vocabulary, or go to Words to manage your word list.',
-              style='text-align: center; color: #57534e; font-size: 1.125rem;'),
+              cls='welcome-subtitle'),
             cls='container'
         ),
         cls='container'
