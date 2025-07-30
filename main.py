@@ -498,7 +498,11 @@ def test():
 
 @rt('/config')
 def config():
-    words = sorted(get_all_words(), key=lambda w: w.word.lower())
+    try:
+        words = sorted(get_all_words(), key=lambda w: w.word.lower())
+    except Exception as e:
+        print(f"Database error in config: {e}")
+        words = []
     
     return Div(
         Div(
@@ -552,10 +556,13 @@ async def post(request):
     form = await request.form()
     new_word = form.get('new-word', '').strip().lower()
     
-    if new_word:
-        add_word(new_word)
-    
-    words = sorted(get_all_words(), key=lambda w: w.word.lower())
+    try:
+        if new_word:
+            add_word(new_word)
+        words = sorted(get_all_words(), key=lambda w: w.word.lower())
+    except Exception as e:
+        print(f"Database error in add-word: {e}")
+        words = []
     return Div(
         *[Div(
             Span(word.word),
@@ -570,8 +577,12 @@ async def post(request):
 
 @rt('/remove-word/{word_id}', methods=['DELETE'])
 def delete(word_id: int):
-    remove_word(word_id)
-    words = sorted(get_all_words(), key=lambda w: w.word.lower())
+    try:
+        remove_word(word_id)
+        words = sorted(get_all_words(), key=lambda w: w.word.lower())
+    except Exception as e:
+        print(f"Database error in remove-word: {e}")
+        words = []
     
     return Div(
         Div(
@@ -591,7 +602,15 @@ def delete(word_id: int):
 @rt('/quiz')
 def quiz():
     # Always reset quiz when navigating to quiz page to ensure word count is accurate
-    reset_quiz()
+    try:
+        reset_quiz()
+    except Exception as e:
+        print(f"Database error in quiz reset: {e}")
+        # Use fallback words for demo
+        quiz_state['words_remaining'] = ['example', 'vocabulary', 'word']
+        quiz_state['streak'] = 0
+        quiz_state['correct_answers'] = 0
+        quiz_state['total_words'] = 3
     
     # Get the first question directly
     if not quiz_state['words_remaining']:
