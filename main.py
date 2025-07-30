@@ -1,5 +1,14 @@
 from fasthtml.common import *
-from database import add_word, remove_word, get_all_words, get_active_words
+try:
+    from database import add_word, remove_word, get_all_words, get_active_words
+    print("Database imported successfully")
+except Exception as e:
+    print(f"Warning: Database import failed: {e}")
+    # Create fallback functions
+    def add_word(word): return False
+    def remove_word(word_id): return False
+    def get_all_words(): return []
+    def get_active_words(): return []
 from anthropic import Anthropic
 import os
 import json
@@ -9,7 +18,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize Anthropic client
-anthropic = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+try:
+    anthropic = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+except Exception as e:
+    print(f"Warning: Could not initialize Anthropic client: {e}")
+    anthropic = None
 
 # FastHTML app setup with mobile-optimized styling
 app, rt = fast_app(
@@ -400,6 +413,13 @@ def reset_quiz():
 
 def get_quiz_options(word):
     """Get multiple choice options from Claude API"""
+    if anthropic is None:
+        return [
+            f"The correct definition of {word}",
+            f"An incorrect definition of {word} (option 1)",
+            f"An incorrect definition of {word} (option 2)"
+        ]
+    
     try:
         message = anthropic.messages.create(
             model="claude-3-5-sonnet-20241022",

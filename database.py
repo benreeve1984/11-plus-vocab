@@ -7,13 +7,30 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///vocab.db')
+# Use Vercel Postgres URL (try multiple possible env vars) or fallback to local SQLite
+DATABASE_URL = (
+    os.getenv('POSTGRES_URL') or 
+    os.getenv('DATABASE_URL') or 
+    'sqlite:///vocab.db'
+)
 
 # Handle Vercel Postgres URL format
 if DATABASE_URL.startswith('postgres://'):
     DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
 
-engine = create_engine(DATABASE_URL)
+# Create engine with proper connection settings for Vercel Postgres
+if 'postgresql://' in DATABASE_URL:
+    # Vercel Postgres settings
+    engine = create_engine(
+        DATABASE_URL,
+        pool_pre_ping=True,  # Verify connections before use
+        pool_recycle=3600,   # Recycle connections after 1 hour
+        connect_args={"sslmode": "require"}  # SSL for Postgres
+    )
+else:
+    # Local SQLite settings
+    engine = create_engine(DATABASE_URL)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -25,8 +42,12 @@ class VocabWord(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     is_active = Column(Boolean, default=True)
 
-# Create tables
-Base.metadata.create_all(bind=engine)
+# Create tables with error handling
+try:
+    Base.metadata.create_all(bind=engine)
+    print("Database tables created successfully")
+except Exception as e:
+    print(f"Warning: Could not create database tables: {e}")
 
 def get_db():
     db = SessionLocal()
@@ -100,4 +121,7 @@ def init_default_words():
         db.close()
 
 # Initialize database with default words on first run
-# init_default_words()  # Commented out to prevent resetting words
+try:
+    init_default_words()
+except Exception as e:
+    print(f"Warning: Could not initialize default words: {e}")
