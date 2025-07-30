@@ -11,7 +11,7 @@ load_dotenv()
 # Initialize Anthropic client
 anthropic = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
 
-# FastHTML app setup
+# FastHTML app setup with mobile-optimized styling
 app, rt = fast_app(
     hdrs=(
         Link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'),
