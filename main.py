@@ -853,8 +853,8 @@ def quiz():
                     cls='stat'
                 ),
                 Div(
-                    Div(f'{quiz_state["correct_answers"]}/{quiz_state["total_words"]}', cls='stat-value'),
-                    Div('Progress', cls='stat-label'),
+                    Div(f'{quiz_state["total_words"] - len(quiz_state["words_remaining"])}/{quiz_state["total_words"]}', cls='stat-value'),
+                    Div('This Round', cls='stat-label'),
                     cls='stat'
                 ),
                 cls='stats',
@@ -930,16 +930,20 @@ def quiz_answer(word: str, answer_index: int, correct_index: int):
     
     if is_correct:
         quiz_state['streak'] += 1
-        quiz_state['correct_answers'] += 1
         if word in quiz_state['words_remaining']:
             quiz_state['words_remaining'].remove(word)
         message = Div('Correct! Well done!', cls='message success')
     else:
+        # Reset everything - user must get all words right in a single streak
         quiz_state['streak'] = 0
+        # Reset the word list so they have to start over
+        words = get_active_words()
+        quiz_state['words_remaining'] = [w.word for w in words]
+        
         # Get the correct answer to show
         correct_option_text = get_quiz_options(word)[0]
         message = Div(
-            P('Incorrect!', style='font-weight: bold; margin-bottom: 0.5rem;'),
+            P('Incorrect! Starting over...', style='font-weight: bold; margin-bottom: 0.5rem;'),
             P(f'The correct answer was: {correct_option_text}', style='font-size: 0.9rem;'),
             cls='message error'
         )
@@ -953,8 +957,8 @@ def quiz_answer(word: str, answer_index: int, correct_index: int):
                 cls='stat'
             ),
             Div(
-                Div(f'{quiz_state["correct_answers"]}/{quiz_state["total_words"]}', cls='stat-value'),
-                Div('Progress', cls='stat-label'),
+                Div(f'{quiz_state["total_words"] - len(quiz_state["words_remaining"])}/{quiz_state["total_words"]}', cls='stat-value'),
+                Div('This Round', cls='stat-label'),
                 cls='stat'
             ),
             cls='stats',
